@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "733ba874-0353-4108-9972-1257bede3912",
+		"name": "Испытание 2: «ИСПЫТАНИЕ СТОЙКОСТИ», задача 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25887218",
+		"_collection_link": "https://universal-rocket-626683.postman.co/workspace/%D0%94%D0%98%D0%9F%D0%9B%D0%9E%D0%9C~03bf5f54-501a-4a8f-8941-935ee7ee8738/collection/25887218-733ba874-0353-4108-9972-1257bede3912?action=share&source=collection_link&creator=25887218"
+	},
+	"item": [
+		{
+			"name": "Добавление 1 ед товара в корзину",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOiI5MzI5ZDRjMGM1MzY0YzE4YWY2MWI2NDAyZWFlNDQ1NGJkNjQwNTU1Yjk2ZjJjZWEzNTYxNjBlNWRlNGE1Y2M4IiwiaWF0IjoxNjk3MDE1NjE4LCJleHAiOjE2OTcxODg0MTgsInR5cGUiOjEwfQ.Wwioex6IhglfCtAaZydASsdsCtqkaXKHA9BI8hmaJY4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "token={{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 2999786,\r\n  \"adData\": {\r\n    \"item_list_name\": \"index\",\r\n    \"product_shelf\": \"Лучшие из лучших\"\r\n\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/api/{{Version}}/cart/product",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{Version}}",
+						"cart",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение кол-ва товара в корзине",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOiI5MzI5ZDRjMGM1MzY0YzE4YWY2MWI2NDAyZWFlNDQ1NGJkNjQwNTU1Yjk2ZjJjZWEzNTYxNjBlNWRlNGE1Y2M4IiwiaWF0IjoxNjk3MDE1NjE4LCJleHAiOjE2OTcxODg0MTgsInR5cGUiOjEwfQ.Wwioex6IhglfCtAaZydASsdsCtqkaXKHA9BI8hmaJY4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 2999786,\r\n        \"quantity\": 2\r\n    }\r\n]"
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/api/{{Version}}/cart",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{Version}}",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Просмотр товаров в корзине",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOiI5MzI5ZDRjMGM1MzY0YzE4YWY2MWI2NDAyZWFlNDQ1NGJkNjQwNTU1Yjk2ZjJjZWEzNTYxNjBlNWRlNGE1Y2M4IiwiaWF0IjoxNjk3MDE1NjE4LCJleHAiOjE2OTcxODg0MTgsInR5cGUiOjEwfQ.Wwioex6IhglfCtAaZydASsdsCtqkaXKHA9BI8hmaJY4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BaseUrl}}/api/{{Version}}/cart",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{Version}}",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление товара из корзины",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOiI5MzI5ZDRjMGM1MzY0YzE4YWY2MWI2NDAyZWFlNDQ1NGJkNjQwNTU1Yjk2ZjJjZWEzNTYxNjBlNWRlNGE1Y2M4IiwiaWF0IjoxNjk3MDE1NjE4LCJleHAiOjE2OTcxODg0MTgsInR5cGUiOjEwfQ.Wwioex6IhglfCtAaZydASsdsCtqkaXKHA9BI8hmaJY4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BaseUrl}}/api/{{Version}}/cart",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{Version}}",
+						"cart"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "Bearer%20eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOiI5MzI5ZDRjMGM1MzY0YzE4YWY2MWI2NDAyZWFlNDQ1NGJkNjQwNTU1Yjk2ZjJjZWEzNTYxNjBlNWRlNGE1Y2M4IiwiaWF0IjoxNjk3MDE1NjE4LCJleHAiOjE2OTcxODg0MTgsInR5cGUiOjEwfQ.Wwioex6IhglfCtAaZydASsdsCtqkaXKHA9BI8hmaJY4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOiI5MzI5ZDRjMGM1MzY0YzE4YWY2MWI2NDAyZWFlNDQ1NGJkNjQwNTU1Yjk2ZjJjZWEzNTYxNjBlNWRlNGE1Y2M4IiwiaWF0IjoxNjk3MDE1NjE4LCJleHAiOjE2OTcxODg0MTgsInR5cGUiOjEwfQ.Wwioex6IhglfCtAaZydASsdsCtqkaXKHA9BI8hmaJY4",
+			"type": "string"
+		},
+		{
+			"key": "BaseUrl",
+			"value": "https://web-gate.chitai-gorod.ru",
+			"type": "string"
+		},
+		{
+			"key": "Version",
+			"value": "v1",
+			"type": "string"
+		}
+	]
+}
