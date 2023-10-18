@@ -1,0 +1,31 @@
+Задача 1
+Дано: три таблицы.
+
+Destination (id, name, id_status).
+Tickets (id, id_destination, lowest_price, highest_pice).
+Status (id, name).
+
+Необходимо: составить запросы, которые помогут получить следующую информацию:
+
+1. Уникальные названия маршрутов (destination.name), для которых существуют билеты (есть запись в tickets). Вывести только названия.
+
+SELECT DISTINCT D.name
+FROM Destination D
+INNER JOIN Tickets T ON D.id = T.id_destination;
+
+2. Дополните предыдущий запрос: ограничьте маршруты статусом «Без визы».
+
+SELECT DISTINCT D.name
+FROM Destination D
+INNER JOIN Tickets T ON D.id = T.id_destination
+INNER JOIN Status S ON D.id_status = S.id
+WHERE S.name = 'Без визы';
+
+3. Найдите маршруты, максимальная цена которых выше общей средней. Общая средняя находится как среднее значение lowest_price и highest_price. Вывести названия и высшую цену.
+
+SELECT D.name, MAX(T.highest_price) as highest_price
+FROM Destination D
+INNER JOIN Tickets T ON D.id = T.id_destination
+WHERE T.highest_price > (
+  SELECT AVG((lowest_price + highest_price) / 2) 
+  FROM Tickets);

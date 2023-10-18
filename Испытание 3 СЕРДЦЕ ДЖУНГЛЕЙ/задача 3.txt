@@ -1,0 +1,68 @@
+Задача 3
+Дано: две таблицы.
+
+book: 
+
+id_book    title         id_author     pages     year publish  
+12345      CORALINE          111        320          2002
+12346    Little Women        222        384          1868
+12347        1984            333        384          1990
+12348   THE GREAT GATSBY     444        320          1925
+12349       DRACULA          555        448          1897
+
+author:
+
+id_author    full-name           century
+111         Neil Gaiman            21
+222       Louisa May Olkott        19
+333         George Orwell          20
+444   Fitzgerald Francis Scott     20
+555         Stoker Bram            19
+
+Необходимо: составить запросы, которые помогут получить следующую информацию:
+
+1. Уникальные названия всех книг, опубликованных после 1990 года. Вывести только названия.
+
+Задача 3
+Дано: две таблицы.
+
+book: 
+
+id_book    title         id_author     pages     year publish  
+12345      CORALINE          111        320          2002
+12346    Little Women        222        384          1868
+12347        1984            333        384          1990
+12348   THE GREAT GATSBY     444        320          1925
+12349       DRACULA          555        448          1897
+
+author:
+
+id_author    full-name           century
+111         Neil Gaiman            21
+222       Louisa May Olkott        19
+333         George Orwell          20
+444   Fitzgerald Francis Scott     20
+555         Stoker Bram            19
+
+Необходимо: составить запросы, которые помогут получить следующую информацию:
+
+1. Уникальные названия всех книг, опубликованных после 1990 года. Вывести только названия.
+
+SELECT DISTINCT title
+FROM book
+WHERE year > 1990;
+
+2. Для каждого автора найти сумму напечатанных страниц. 
+Вывести полное имя автора и сумму страниц.
+
+SELECT A."full-name", SUM(B.pages) as total_pages
+FROM author A
+INNER JOIN book B ON A.id_author = B.id_author
+GROUP BY A."full-name";
+
+3. Подсчитать количество книг авторов каждого века. Вывести век и количество книг.
+
+SELECT CEIL(century) as century, COUNT(id_book) as book_count
+FROM book
+INNER JOIN author A ON book.id_author = A.id_author
+GROUP BY century;
